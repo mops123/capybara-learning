@@ -42,6 +42,7 @@ group :test do
   gem 'poltergeist'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
+  gem 'cucumber-rails', require: false
 end
 
 group :development, :test do
