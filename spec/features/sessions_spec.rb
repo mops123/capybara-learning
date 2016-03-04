@@ -13,24 +13,41 @@ RSpec.feature "User Sessions", type: :feature do
   context "failure" do
     before do
       # try to sign in without a password
+      fill_in('Email', with: email)
+      click_button('Sign in')
     end
 
-    it "displays an error message"
+    it "displays an error message" do
 
     # should still see 'Sign in' and 'Sign up'
     # should not see 'Profile' or 'Sign out'
+    expect(page).to have_content('Sign in')
+    expect(page).to have_content('Sign up')
+    expect(page).not_to have_content('Profile')
+    expect(page).not_to have_content('Sign out')
+  end
     it "shows the correct navigation links"
   end
 
   context "success" do
     before do
       # sign in
+      fill_in('Email', with: email)
+      fill_in('Password', with: password)
+      click_button('Sign in')
     end
 
-    it "displays a welcome message"
+    it "displays a welcome message" do
 
     # should not see 'Sign in' and 'Sign up'
     # should see 'Profile' or 'Sign out'
+
+    expect(page).not_to have_content('Sign in')
+    expect(page).not_to have_content('Sign up')
+    expect(page).to have_content('Profile')
+    expect(page).to have_content('Sign out')
+    end
+
     it "shows the correct navigation links"
   end
 end
