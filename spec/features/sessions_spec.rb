@@ -48,6 +48,12 @@ RSpec.feature "User Sessions", type: :feature do
     expect(page).to have_content('Sign out')
     end
 
-    it "shows the correct navigation links"
+    it "shows the correct navigation links" do
+      expect(page).not_to have_link("Sign in")
+      expect(page).not_to have_link("Sign up")
+      expect(page).to have_link("Profile")
+      expect(page).to have_link("Sign out")
+
+    end
   end
 end
